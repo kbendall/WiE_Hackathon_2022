@@ -8,7 +8,7 @@ def main():
 
     #loading json files
     load_dotenv()
-    o = open('flagAsSexist.json')
+    o = open('flagComment.json')
     flags = json.load(o)
     o = open('questions.json')
     data = json.load(o)
@@ -19,7 +19,7 @@ def main():
     client = discord.Client(intents=discord.Intents.all())
     @client.event
     async def on_ready():
-        print(f'{client.user} has connected to Discord!!!!!')
+        print(f'{client.user} has connected to Discord')
 
 
     #message responses
@@ -36,8 +36,8 @@ def main():
              return
 
         #intro welcome message
-        if user_message.lower() == 'wonderwoman':
-            await message.channel.send(f'Hello {username}! Welcome to the Server:) I\'m WonderWoman, nice to meet you!')
+        if user_message.lower() == '!help':
+            await message.channel.send(f'Hello {username}! Welcome to the Server :) I\'m WonderWoman and I\'m here to keep you safe from gender based harrassment while you interact with others in this server. Try using !quote OR !quiz-subject (either math, programming or fun-fact) for a fun surprise!')
         
         #get a quote
         if user_message.lower() == '!quote':
