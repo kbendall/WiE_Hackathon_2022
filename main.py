@@ -5,11 +5,16 @@ import json
 from quotes import *
 from discord.utils import get
 
-
 def main():
+
+    #loading json files
     load_dotenv()
     o = open('flagAsSexist.json')
     flags = json.load(o)
+    o = open('questions.json')
+    data = json.load(o)
+
+    # setting up discord bot
     TOKEN = 'MTA0MDk5NzU4OTE4Njc3MzAxMg.GtJT2Z.jPRbLHKXEzs_89MS_Vcgl0mRjg06xaVwdToKAk'
 
     client = discord.Client(intents=discord.Intents.all())
@@ -57,8 +62,20 @@ def main():
                 else:
                     await message.author.add_roles(get(message.guild.roles, id=strikeOne))
                     await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. You now have the role {get(message.guild.roles, id=strikeOne)}. On Strike THREE you will be auto banned.')
-
     
+        #math question
+        if user_message.lower() == '!quiz':
+            await message.channel.send(f"Hey {username}! Here's your question: ")
+            await message.channel.send(data['question'][0]['q'])
+
+            def check(m):
+                print(m.content)
+                return m.content == data['question'][0]['a']
+
+            msg = await client.wait_for("message", check=check)
+            await message.channel.send(f"Correct!")
+
+
     client.run(TOKEN)
 
 
