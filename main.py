@@ -1,10 +1,8 @@
 import os
-import discord
+import discord, json, random
 from dotenv import load_dotenv
-import json
 from quotes import *
 from discord.utils import get
-import random
 
 def main():
 
@@ -24,6 +22,7 @@ def main():
         print(f'{client.user} has connected to Discord!!!!!')
 
 
+    #message responses
     @client.event
     async def on_message(message):
 
@@ -40,10 +39,12 @@ def main():
         if user_message.lower() == 'wonderwoman':
             await message.channel.send(f'Hello {username}! Welcome to the Server:) I\'m WonderWoman, nice to meet you!')
         
+        #get a quote
         if user_message.lower() == '!quote':
             quote = getQuote()
             await message.channel.send(f'Hi {username}! Here is your quote!' + "\n" + "*" + str(quote) +"*")
 
+        #warnings for people being sexist
         strikeOne = 1041080955072417893
         strikeTwo = 1041081117719150656
         strikeThree = 1041081171511091281
@@ -76,6 +77,7 @@ def main():
             msg = await client.wait_for("message", check=check)
             await message.channel.send(f"Correct!")
         
+        #programming quiz
         if user_message.lower() == '!quiz-programming':
             await message.channel.send(f"Hey {username}! Here's your question: ")
             await message.channel.send(data['programming'][num]['q'])
@@ -86,6 +88,7 @@ def main():
             msg = await client.wait_for("message", check=check)
             await message.channel.send(f"Correct!")
 
+        #fun facts quiz
         if user_message.lower() == '!quiz-fun-fact':
             await message.channel.send(f"Hey {username}! Here's your question: ")
             await message.channel.send(data['fun facts'][num]['q'])
