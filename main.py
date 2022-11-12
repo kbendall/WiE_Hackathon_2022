@@ -2,7 +2,9 @@ import os
 import discord
 from dotenv import load_dotenv
 import json
+from quotes import *
 
+@commands.command(pass_context = True)
 def main():
     load_dotenv()
     o = open('flagAsSexist.json')
@@ -13,7 +15,8 @@ def main():
     @client.event
     async def on_ready():
         print(f'{client.user} has connected to Discord!!!!!')
-    
+
+
     @client.event
     async def on_message(message):
 
@@ -29,10 +32,16 @@ def main():
         #intro welcome message
         if user_message.lower() == 'wonderwoman':
             await message.channel.send(f'Hello {username}! Welcome to the Server:) I\'m WonderWoman, nice to meet you!')
+        
+        if user_message.lower() == '!quote':
+            quote = getQuote()
+            await message.channel.send(f'Hi {username}! Here is your quote!' + "\n" + "*" + str(quote) +"*")
+
 
         for i in flags['flags']:
             if message.content == i:
                 await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. This is your {username} strike before auto-ban.')
+                addStrike(i, username)
     
     client.run(TOKEN)
 
