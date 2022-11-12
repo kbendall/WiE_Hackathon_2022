@@ -3,8 +3,8 @@ import discord
 from dotenv import load_dotenv
 import json
 from quotes import *
+from discord.utils import get
 
-#@commands.command(pass_context = True)
 def main():
 
     #loading json files
@@ -43,11 +43,25 @@ def main():
             quote = getQuote()
             await message.channel.send(f'Hi {username}! Here is your quote!' + "\n" + "*" + str(quote) +"*")
 
+        strikeOne = 1041080955072417893
+        strikeTwo = 1041081117719150656
+        strikeThree = 1041081171511091281
+        standard = 1041099675027124256
 
         for i in flags['flags']:
-            if message.content == i:
-                await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. This is your {username} strike before auto-ban.')
-                #addStrike(i, username)
+            if i in message.content:
+                if get(message.guild.roles, id=strikeOne) in message.author.roles:
+                    await message.author.add_roles(get(message.guild.roles, id=strikeTwo))
+                    await message.author.remove_roles(get(message.guild.roles, id=strikeOne))
+                    await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. You now have the role {get(message.guild.roles, id=strikeTwo)}. On Strike THREE you will be auto banned.')
+                elif get(message.guild.roles, id=strikeTwo) in message.author.roles:
+                    await message.author.add_roles(get(message.guild.roles, id=strikeThree))
+                    await message.author.remove_roles(get(message.guild.roles, id=strikeTwo))
+                    await message.author.remove_roles(get(message.guild.roles, id=standard))
+                    await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. You now have the role {get(message.guild.roles, id=strikeThree)}. You have been auto banned.')
+                else:
+                    await message.author.add_roles(get(message.guild.roles, id=strikeOne))
+                    await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. You now have the role {get(message.guild.roles, id=strikeOne)}. On Strike THREE you will be auto banned.')
     
         #math question
         if user_message.lower() == '!quiz':
