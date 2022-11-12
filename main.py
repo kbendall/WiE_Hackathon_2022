@@ -43,6 +43,24 @@ def main():
                 await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. This is your {username} strike before auto-ban.')
                 addStrike(i, username)
     
+        #math question
+        if user_message.lower() == '!quiz':
+            await message.channel.send(f"Hey {username}! Here's your question: ")
+            await message.channel.send(f"What is 1 + 1?" )
+        
+            def check(m):
+                return m.content == "2"
+
+            msg = await client.wait_for("message", check=check)
+            if message.content == '2':
+                await message.channel.send("Nice")
+                await message.channel.send(f"Hello {msg.author}!")
+
+            # msg = client.wait_for("message", check=check)
+            # await message.channel.send(f"Correct {username}!")
+            # msg = await client.wait_for("message", check=check)
+            # await message.channel.send(f"Correct {msg.author}!")
+
     client.run(TOKEN)
 
 
