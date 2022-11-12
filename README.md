@@ -8,9 +8,3 @@ This Discord Bot will address barriers to women and girls entering STEM fields. 
 - address sexist comments and ban offenders
 - send inspirational quotes
 - send a STEM based trivia/fun fact game
-
-## Installation
-
-Pip commands to run:
-
-pip install requests (for API work)
