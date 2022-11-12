@@ -11,6 +11,21 @@ def main():
     async def on_ready():
         print(f'{client.user} has connected to Discord!!!!!')
 
+    @client.event
+    async def on_message(message):
+        print('HELLO')
+        username = str(message.author).split('#')[0]
+        user_message = str(message.content)
+        channel = str(message.channel.name)
+        print(f'{username}: {user_message} ({channel})')
+        if message.author == client.user:
+            return
+        await message.channel.send('hello')
+
+        if message.channel.name == 'test':
+            if user_message.lower() == 'hello':
+                    return
+    
     client.run(TOKEN)
 
 
