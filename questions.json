@@ -5,8 +5,12 @@
             "a": "2"
         },
         {
-            "q": "What's 2+2?",
-            "a": "4"
+            "q": "True of False. f(x) = f'(x) = e",
+            "a": "True"
+        },
+        {
+            "q": "2x + 7 = 14",
+            "a": "3.5"
         }
     ],
     "programming": [
@@ -17,12 +21,25 @@
         {
             "q": "What data type is the following: 4.35",
             "a": "Float"
+        },
+        {
+            "q":"True or False. Python is an Object Oriented Programming Language",
+            "a": "True"
         }
     ],
     "fun facts": [
         {
             "q": "Who was the first female Canadian astronaut",
             "a": "Roberta Lynn Bondar"
+        },
+        {
+
+            "q":"Who was the first woman to go to space",
+            "a":"Valentina Tereshkova"
+        },
+        {
+            "q": "Who is the vice president of the US",
+            "a": "Kamala Harris"
         }
     ]
 }

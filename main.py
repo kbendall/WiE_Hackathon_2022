@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import json
 from quotes import *
 from discord.utils import get
+import random
 
 def main():
 
@@ -64,17 +65,36 @@ def main():
                     await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. You now have the role {get(message.guild.roles, id=strikeOne)}. On Strike THREE you will be auto banned.')
     
         #math question
-        if user_message.lower() == '!quiz':
+        num = random.randint(0,2)
+        if user_message.lower() == '!quiz-math':
             await message.channel.send(f"Hey {username}! Here's your question: ")
-            await message.channel.send(data['question'][0]['q'])
+            await message.channel.send(data['math'][num]['q'])
 
             def check(m):
-                print(m.content)
-                return m.content == data['question'][0]['a']
+                return m.content == str(data['math'][num]['a']).lower()
+
+            msg = await client.wait_for("message", check=check)
+            await message.channel.send(f"Correct!")
+        
+        if user_message.lower() == '!quiz-programming':
+            await message.channel.send(f"Hey {username}! Here's your question: ")
+            await message.channel.send(data['programming'][num]['q'])
+
+            def check(m):
+                return m.content == str(data['programming'][num]['a']).lower()
 
             msg = await client.wait_for("message", check=check)
             await message.channel.send(f"Correct!")
 
+        if user_message.lower() == '!quiz-fun-fact':
+            await message.channel.send(f"Hey {username}! Here's your question: ")
+            await message.channel.send(data['fun facts'][num]['q'])
+
+            def check(m):
+                return m.content == str(data['fun facts'][num]['a']).lower()
+
+            msg = await client.wait_for("message", check=check)
+            await message.channel.send(f"Correct!")
 
     client.run(TOKEN)
 
