@@ -4,11 +4,17 @@ from dotenv import load_dotenv
 import json
 from quotes import *
 
-@commands.command(pass_context = True)
+#@commands.command(pass_context = True)
 def main():
+
+    #loading json files
     load_dotenv()
     o = open('flagAsSexist.json')
     flags = json.load(o)
+    o = open('questions.json')
+    data = json.load(o)
+
+    # setting up discord bot
     TOKEN = 'MTA0MDk5NzU4OTE4Njc3MzAxMg.GtJT2Z.jPRbLHKXEzs_89MS_Vcgl0mRjg06xaVwdToKAk'
 
     client = discord.Client(intents=discord.Intents.all())
@@ -41,25 +47,20 @@ def main():
         for i in flags['flags']:
             if message.content == i:
                 await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. This is your {username} strike before auto-ban.')
-                addStrike(i, username)
+                #addStrike(i, username)
     
         #math question
         if user_message.lower() == '!quiz':
             await message.channel.send(f"Hey {username}! Here's your question: ")
-            await message.channel.send(f"What is 1 + 1?" )
-        
+            await message.channel.send(data['question'][0]['q'])
+
             def check(m):
-                return m.content == "2"
+                print(m.content)
+                return m.content == data['question'][0]['a']
 
             msg = await client.wait_for("message", check=check)
-            if message.content == '2':
-                await message.channel.send("Nice")
-                await message.channel.send(f"Hello {msg.author}!")
+            await message.channel.send(f"Correct!")
 
-            # msg = client.wait_for("message", check=check)
-            # await message.channel.send(f"Correct {username}!")
-            # msg = await client.wait_for("message", check=check)
-            # await message.channel.send(f"Correct {msg.author}!")
 
     client.run(TOKEN)
 

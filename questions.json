@@ -1,0 +1,28 @@
+{
+    "math": [
+        {
+            "q": "What's 1 + 1?",
+            "a": "2"
+        },
+        {
+            "q": "What's 2+2?",
+            "a": "4"
+        }
+    ],
+    "programming": [
+        {
+            "q": "What does LIFO stand for in programming terms",
+            "a": "Last In First Out"
+        },
+        {
+            "q": "What data type is the following: 4.35",
+            "a": "Float"
+        }
+    ],
+    "fun facts": [
+        {
+            "q": "Who was the first female Canadian astronaut",
+            "a": "Roberta Lynn Bondar"
+        }
+    ]
+}
