@@ -11,3 +11,9 @@ address sexist comments
 send inspirational articles from women in stem
 send ted talks 
 send school events 
+
+## Installation
+
+Pip commands to run:
+
+pip install requests (for API work)
