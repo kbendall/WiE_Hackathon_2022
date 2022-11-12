@@ -17,19 +17,5 @@ response = urlopen(url)
 # from url in data
 data_json = json.loads(response.read())
 
-# Open a file with access mode 'a'
-file_object = open('sample.txt', 'w')
-
-for x in data_json:
-    file_object.write(str(x)+"\n")
-# Close the file
-file_object.close()
-
-
-myfile = open("sample.txt", "rt") # open lorem.txt for reading text
-contents = myfile.read()         # read the entire file to string
-myfile.close()                   # close the file
-
-lines = open('sample.txt').read().splitlines()
-myline =random.choice(lines)
-
+for i in range(50):
+    print(data_json[i]['q'])
