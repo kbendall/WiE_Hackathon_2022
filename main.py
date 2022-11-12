@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 import json
 from quotes import *
 
-@commands.command(pass_context = True)
 def main():
     load_dotenv()
     o = open('flagAsSexist.json')
@@ -39,9 +38,8 @@ def main():
 
 
         for i in flags['flags']:
-            if message.content == i:
+            if i in message.content:
                 await message.channel.send(f'Hey {username}! That message has been flagged as insensitive to gender minorities. If you think this is a mistake contact your sever admin. This is your {username} strike before auto-ban.')
-                addStrike(i, username)
     
     client.run(TOKEN)
 
