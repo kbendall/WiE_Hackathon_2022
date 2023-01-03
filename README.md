@@ -6,5 +6,6 @@ This Discord Bot will address barriers to women and girls entering STEM fields. 
 
 ## What it will do
 - address sexist comments and ban offenders
-- send inspirational quotes
+- send inspirational quotes - from  https://zenquotes.io/
 - send a STEM based trivia/fun fact game
+
